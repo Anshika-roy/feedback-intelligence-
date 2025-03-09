@@ -1,0 +1,34 @@
+// Simple sentiment analysis using a predefined list of words
+const positiveWords = ['good', 'great', 'happy', 'love', 'excellent'];
+const negativeWords = ['bad', 'sad', 'hate', 'terrible', 'awful'];
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+    const comment = document.getElementById('commentBox').value.toLowerCase();
+    const reactionDiv = document.getElementById('reaction');
+    let sentiment = 'neutral';
+
+    // Basic sentiment analysis
+    positiveWords.forEach(word => {
+        if (comment.includes(word)) {
+            sentiment = 'positive';
+        }
+    });
+
+    negativeWords.forEach(word => {
+        if (comment.includes(word)) {
+            sentiment = 'negative';
+        }
+    });
+
+    // Update character's reaction based on sentiment
+    if (sentiment === 'positive') {
+        reactionDiv.innerText = '😊';
+        document.getElementById('character').style.backgroundColor = 'lightgreen'; // Change character color
+    } else if (sentiment === 'negative') {
+        reactionDiv.innerText = '😞';
+        document.getElementById('character').style.backgroundColor = 'lightcoral'; // Change character color
+    } else {
+        reactionDiv.innerText = '😐';
+        document.getElementById('character').style.backgroundColor = 'lightyellow'; // Change character color
+    }
+});
